@@ -8,7 +8,7 @@ import os
 import cv2
 import gdown
 
-
+    
 app = flask.Flask(__name__)
 cors = flask_cors.CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
