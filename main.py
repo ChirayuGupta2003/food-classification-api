@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request
-from flask_cors import CORS
+import flask
+import flask_cors
 from tensorflow.keras.applications.inception_v3 import InceptionV3
 from tensorflow.keras.layers import Dense, Dropout, BatchNormalization
 from tensorflow.keras.models import Model
@@ -9,8 +9,8 @@ import cv2
 import gdown
 
 
-app = Flask(__name__)
-cors = CORS(app)
+app = flask.Flask(__name__)
+cors = flask_cors.CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 
@@ -29,7 +29,7 @@ def predict_image(img_array):
 
 @app.route("/")
 def home():
-    file = request.files['file'].read()
+    file = flask.request.files['file'].read()
 
     npimg = np.frombuffer(file, np.uint8)
 
@@ -43,7 +43,7 @@ def home():
     print(data)
 
     if data:
-        return jsonify(data)
+        return flask.jsonify(data)
     return "Working"
 
 
