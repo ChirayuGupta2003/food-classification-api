@@ -37,9 +37,6 @@ def home():
 
     img = cv2.resize(img, (228, 228), interpolation=cv2.INTER_NEAREST)
 
-    # cv2.imshow("img", img)
-    # cv2.waitKey(0)
-
     index, confidence = predict_image(img)
 
     data = {"class": classes[index], "confidence": str(confidence)}
