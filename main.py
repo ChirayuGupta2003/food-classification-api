@@ -56,7 +56,6 @@ def predict():
     return "Working"
 
 
-
 model = InceptionV3(weights='imagenet', include_top=False,
                     input_shape=(228, 228, 3), pooling='avg')
 
@@ -70,17 +69,17 @@ input = Dropout(0.3)(input)
 output = Dense(20, activation='softmax')(input)
 m = Model(inputs=model.input, outputs=output)
 m.compile(optimizer='adam', metrics=[
-            'accuracy'], loss='categorical_crossentropy')
+    'accuracy'], loss='categorical_crossentropy')
 
 if not os.path.isfile("food_recognition_inceptionV3.h5"):
     gdown.download("https://drive.google.com/file/d/1Y5ALEolZrlyYYRx9HEIC39aU4eBV2XjF/view?usp=share_link",
-                    "food_recognition_inceptionV3.h5", quiet=False, fuzzy=True)
+                   "food_recognition_inceptionV3.h5", quiet=False, fuzzy=True)
 
 m.load_weights("food_recognition_inceptionV3.h5")
 
 classes = ['burger', 'butter_naan', 'chai', 'chapati', 'chole_bhature', 'dal_makhani', 'dhokla', 'fried_rice', 'idli', 'jalebi',
-            'kaathi_rolls', 'kadai_paneer', 'kulfi', 'masala_dosa', 'momos', 'paani_puri', 'pakode', 'pav_bhaji', 'pizza', 'samosa']
+           'kaathi_rolls', 'kadai_paneer', 'kulfi', 'masala_dosa', 'momos', 'paani_puri', 'pakode', 'pav_bhaji', 'pizza', 'samosa']
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run(port=5000)
