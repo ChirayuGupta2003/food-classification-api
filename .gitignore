@@ -2,3 +2,5 @@ venv/
 .git/
 food_recognition_inceptionV3.h5
 .vercel
+__pycache__/
+temp/

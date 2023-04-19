@@ -31,6 +31,11 @@ def predict_image(filename, model):
 
 @app.route("/")
 def home():
+    return flask.render_template("index.html")
+
+
+@app.route("/predict")
+def predict():
     file = flask.request.files['file'].read()
 
     npimg = np.frombuffer(file, np.uint8)
