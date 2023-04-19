@@ -38,6 +38,9 @@ def home():
 def predict():
     file = flask.request.files['file'].read()
 
+    if not bool(file):
+        return "No image file attached"
+
     npimg = np.frombuffer(file, np.uint8)
 
     img = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
