@@ -36,10 +36,10 @@ def home():
 
 @app.route("/predict")
 def predict():
-    file = flask.request.files['file'].read()
-
-    if not bool(file):
-        return "No image file attached"
+    try:
+        file = flask.request.files['file'].read()
+    except KeyError as e:
+        return f"No image file attached<br>{e}"
 
     npimg = np.frombuffer(file, np.uint8)
 
@@ -85,4 +85,4 @@ classes = ['burger', 'butter_naan', 'chai', 'chapati', 'chole_bhature', 'dal_mak
 
 
 if __name__ == "__main__":
-    app.run(port=5000)
+    app.run(debug=True, port=5000)
